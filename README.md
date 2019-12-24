@@ -1,20 +1,10 @@
-# Data.gov.s[]()g Data Quality Guide for Tabular Data
+# City of Ballarat Data Quality Guide for Tabular Data
 
 ## Introduction
 
-**Data.gov.s[]()g** was launched in 2011 as the Singapore government's [open data](http://opendatahandbook.org/guide/en/what-is-open-data/) portal. To date, 70 government agencies have published data on the portal. 
+**The City of Ballarat data exchange** will be launched in 2020 as the City of Ballarat's [open data](http://opendatahandbook.org/guide/en/what-is-open-data/) portal. To date, the City of Ballarat has published over [70 datasets](https://data.gov.au/organisations/org-dga-4e704c39-2385-42e9-a7d1-5af343c358b5) on the national open data platform data.gov.au. 
 
-In 2014, we started on a revamp of the site to make our data:
-
-1. More relevant to the general public
-2. More usable for researchers, developers and other power users. 
-
-To meet these requirements, we drafted a new set of *data quality standards* to ensure *all* published data can be:
-
-1. Visualised in charts and maps
-2. Accessible via APIs
-
-The new **Data.gov.s[]()g** was launched in October 2015. All published datasets can be accessed via CKAN APIs, and almost all datasets are visualised so users can understand trends at a glance.
+This data quality framework is adopted on the tidy data principles, and adopted from [data.gov.sg](https://data.gov.sg/) - the Singapore Government's Open Data platform
 
 **All datasets must meet these data quality requirements before publication on Data.gov.s[]()g**.
 
