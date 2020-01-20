@@ -1,32 +1,42 @@
-# City of Ballarat Data Quality Guide for Tabular Data
+# Ballarat Data Exchange Data.ballarat.vic.gov.au Data Quality Guide for Tabular Data
 
 ## Introduction
 
-**The City of Ballarat data exchange** will be launched in 2020 as the City of Ballarat's [open data](http://opendatahandbook.org/guide/en/what-is-open-data/) portal. To date, the City of Ballarat has published over [70 datasets](https://data.gov.au/organisations/org-dga-4e704c39-2385-42e9-a7d1-5af343c358b5) on the national open data platform data.gov.au. 
+**Ballarat Data Exchange Data.ballarat.gov.au** was launched in 2020 as the City of Ballarat's [open data](http://opendatahandbook.org/guide/en/what-is-open-data/) portal.
 
-This data quality framework is adopted on the tidy data principles, and adopted from [data.gov.sg](https://data.gov.sg/) - the Singapore Government's Open Data platform
+From launch of the site we intended to make our data:
 
-**All datasets must meet these data quality requirements before publication on Data.gov.s[]()g**.
+1. More relevant to the general public
+2. More usable for researchers, developers and other power users. 
+
+To meet these requirements, we adopted a new set of *data quality standards* to ensure *all* published data can be:
+
+1. Visualised in charts and maps
+2. Accessible via APIs
+
+**Ballarat Data Exchange Data.ballarat.vic.gov.au** was launched in March 2020. All published datasets can be accessed via APIs, and almost all datasets are visualised so users can understand trends at a glance.
+
+**All datasets must meet these data quality requirements before publication on Data.ballarat.gov.au**.
 
 ---
 
 ## Key Principles
 
 ### 1. Machine Readability
-Machine-readable data is data in a format that can be understood by a computer. This means that relevant fields can be extracted and parsed by without human input. 
+Machine-readable data is data in a format that can be understood by a computer. This means that relevant fields can be extracted and parsed without human input. 
 
 Just because a dataset is *digitally accessible* does not necessarily mean it is *machine readable* as well ([more on that here](https://www.data.gov/developers/blog/primer-machine-readability-online-documents-and-data)).
 
-In the spirit of open data, datasets must be provided in non-proprietary file formats. Tabular data is provided as [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) files or in [JSON](http://www.json.org/) format. 
+In the spirit of open data, datasets must be provided in non-proprietary file formats. Tabular data is provided as [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) files or in [JSON](http://www.json.org/) format.
 
-Metadata must be excluded from data files. They will be included in a zip file with the data file (see the Data Package section below).
+Metadata must be excluded from data files. They will be included in the Information tab provided on the Ballarat Data Exchange.
 
 ### 2. Tidy Data
 The concept of *tidy data* is based on [this paper](http://vita.had.co.nz/papers/tidy-data.html) by Hadley Wickham, author of popular R packages ggplot2 and plyr.
 
 Hadley proposes three principles:
 
-1. **Each column is one variable.** This means each column must have the same unit of measurement
+1. **Each column is one variable.** This means each individual column must have a single unit of measurement
 2. **Each row is one observation.** Note that this does not mean there is only one observed variable per row. There can be multiple observed variables per row: “An observation contains all values measured on the same unit (like a person, or a day, or a race) across attributes.” (Wickham Pg 3) 
 3. **One type of observation unit per table** For example, observations on fertility rates of the whole female population and that females of different age groups should be in two tables: 
     - “Total Fertility Rate”, where observation unit is the entire female population
@@ -43,7 +53,8 @@ This makes it easier for users to mashup and use multiple datasets, even from di
 
 
 ### 4. Granularity & Precision
-As far as possible, agencies should provide raw, granular data instead of aggregated and process data, such as percentages. 
+As far as possible, departments should provide raw, granular data instead of aggregated and process data, such as percentages. 
+Personal private information shall not be disclosed, as decribed in the City of Ballarat [Information Privacy Policy](https://www.ballarat.vic.gov.au/sites/default/files/2019-04/Information%20Privacy%20Policy.pdf)
 
 Totals and sub-totals should be in separate tables if needed. For example, there are cases where aggregate numbers (e.g. totals, indices) cannot be derived from granular data points. 
 
@@ -56,17 +67,6 @@ Plain language should be used in naming datasets and the elements in them as far
 
 ---
 
-## Data Packages
-
-We adapted this concept from Open Knowledge International's [Data Package](http://frictionlessdata.io/data-packages/) specification, which allows us to package metadata with data files. 
-
-We chose to provide metadata in [YAML](http://yaml.org/) instead of JSON format, as YAML is both human- and machine-readable. 
-
-When users download a dataset from **Data.gov.s[]()g**, the zip file contains:
-- A metadata text file (in YAML syntax)
-- The resource file(s)
-
----
 ## Structure for Tabular Data
 
 ### 1. Column Headers
@@ -78,9 +78,9 @@ When users download a dataset from **Data.gov.s[]()g**, the zip file contains:
     - e.g. "rating"
 - If header contains more than one word, use underscores to join
     - e.g. vehicle_type
-- Units of measure should be omitted
+- Units of measure should be omitted (to be included in metadata)
 - Keep short (less than 25 characters)
-    - The full name can be stored in schema section of metadata file
+    - The full name can be stored in schema section of the information tab
 
 ### 2. Column Order
 - *Date and time variables* should always be in the first column for time series data
@@ -90,13 +90,13 @@ When users download a dataset from **Data.gov.s[]()g**, the zip file contains:
 ### 3. Row Order
 - Rows should be ordered from the leftmost column to the rightmost one
 - For datetime variables, order chronologically
-- For fixed variables, order alphabetically
+- For fixed variables, order alphabetically (or numerically)
 
 ### 4. Date and Time Variables
 - Based on ISO8601, an international standard for representing date and time. We chose the "extended format" with the hyphens because it is humanly more readable.
     - Compare 2016-01-01 to 20160101
 
-- All date and time variables must be in UTC +8hrs unless specified.
+- All date and time variables must be in Australia/Melbourne timezone unless specified.
 
 - Date variables:
 
@@ -105,7 +105,7 @@ When users download a dataset from **Data.gov.s[]()g**, the zip file contains:
     | Annual      | `year`      | YYYY       | YYYY: 1900 onwards | 2015      |
     | Monthly     | `month`     | YYYY-MM    | MM: 01 to 12       | 2015-01   |
     | Daily       | `date`      | YYYY-MM-DD | DD: 01 to 31       | 2015-01-01|
-    | Weekly      | `week`      | YYYY-[W]WW | [W]WW: W01 to W52  | 2015-W01  |
+    | Weekly      | `week`      | YYYY-[W]WW | [W]WW: W01 to W53  | 2015-W01  |
     | Quarterly   | `quarter`   | YYYY-[Q]Q  | [Q]Q: Q1 to Q4     | 2015-Q1   |
     | Half-yearly | `half_year` | YYYY-[H]H  | [H]H: H1 or H2     | 2015-H1   |
     
@@ -128,7 +128,7 @@ When users download a dataset from **Data.gov.s[]()g**, the zip file contains:
     | Time only   | `time`      | hh:mm                      | 12:00               |
     |             |             | *or* hh:mm:ss              | 12:00:00            |
 
-- Specify the timezone if it is not UTC +8hrs:
+- Specify the timezone if it is not Australia/Melbourne:
 
     | Type        | Column name | Format                     | Example               |
     |-------------|-------------|----------------------------|-----------------------|
@@ -144,7 +144,7 @@ When users download a dataset from **Data.gov.s[]()g**, the zip file contains:
 - No commas
     - E.g. "1000" instead of "1,000"
 - No units of measurement
-    - Units should be in metadata instead
+    - Units should be in metadata only
 - Express as full number where possible
     - If rounded, indicate in metadata
     - E.g. "1200000" instead of "1.2" (million)
@@ -165,8 +165,9 @@ When users download a dataset from **Data.gov.s[]()g**, the zip file contains:
     - e.g. `latitude`: 1.2896700; `longitude`: 103.8500700
 - EPSG should be indicated in metadata
 - Addresses should be represented in two columns if possible
-    - `address`: e.g. 1 Sims Avenue, Singapore 123456
-    - `postal_code`: e.g. 123456
+    - `street_address`: e.g. 25 Armstrong Street South
+    - `suburb`:Ballarat Central
+    - `post_code`: e.g. 3350
 
 ### 8. Null/negligible values
 - For any variable type:
@@ -199,7 +200,9 @@ The following column names should be used only if they adhere to the definitions
 - `longitude`
 - `x_coord`
 - `y_coord`
-- `postal_code`
+- `street_address`
+- `suburb`
+- `post_code`
 
 ---
 
@@ -207,4 +210,4 @@ The following column names should be used only if they adhere to the definitions
 
 We will continue to review this Data Quality Guide to ensure that we meet the needs of our users. 
 
-We welcome all feedback to improve the quality of data published on **Data.gov.s[]()g**. Raise an issue on Github or drop us an email at feedback@data.gov.sg if you have any comments or queries on the guide. 
+We welcome all feedback to improve the quality of data published on **Data.ballarat.vic.gov.au**. Let us know on **Data.ballarat.vic.gov.au** if you have any comments or queries on the guide.
