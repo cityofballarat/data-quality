@@ -59,12 +59,14 @@ Personal private information shall not be disclosed, as decribed in the City of 
 Totals and sub-totals should be in separate tables if needed. For example, there are cases where aggregate numbers (e.g. totals, indices) cannot be derived from granular data points. 
 
 ### 5. Human Readability
-Lastly, datasets should also be presented in a way that makes sense to human users. 
+Datasets should also be presented in a way that makes sense to human users. 
 
 This is why we have created a new set of metadata specifications along with this Data Quality Guide, to ensure that datasets are documented clearly. For instance, each table must be accompanied by a schema, which states the variable type. 
 
 Plain language should be used in naming datasets and the elements in them as far as possible. Column names should be descriptive and meaningful. All jargon must be explained clearly, and where necessary, reference links should be provided. 
 
+### 6. Data Standards
+Where there is an appropriate standard, the [Open Council Data Standards](http://standards.opencouncildata.org/) shall be followed.
 ---
 
 ## Structure for Tabular Data
