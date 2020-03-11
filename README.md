@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**Ballarat Data Exchange Data.ballarat.gov.au** was launched in 2020 as the City of Ballarat's [open data](http://opendatahandbook.org/guide/en/what-is-open-data/) portal.
+**Ballarat Data Exchange Data.ballarat.vic.gov.au** was launched in 2020 as the City of Ballarat's [open data](http://opendatahandbook.org/guide/en/what-is-open-data/) portal.
 
 From launch of the site we intended to make our data:
 
@@ -16,7 +16,7 @@ To meet these requirements, we adopted a new set of *data quality standards* to 
 
 **Ballarat Data Exchange Data.ballarat.vic.gov.au** was launched in March 2020. All published datasets can be accessed via APIs, and almost all datasets are visualised so users can understand trends at a glance.
 
-**All datasets must meet these data quality requirements before publication on Data.ballarat.gov.au**.
+**All datasets must meet these data quality requirements before publication on Data.ballarat.vic.gov.au**.
 
 ---
 
